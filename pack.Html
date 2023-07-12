@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Spero</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.2.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+        integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.2.2/cdn.js" defer></script>
+
+    <style>
+        .slick-next:before {
+            font-family: slick;
+            font-size: 50px;
+            line-height: 1;
+            opacity: 1;
+            color: #FF5F15;
+            position: absolute;
+            left: 50px;
+        }
+
+        .slick-prev:before {
+            font-family: slick;
+            font-size: 50px;
+            line-height: 1;
+            opacity: 1;
+            color: #FF5F15;
+            position: absolute;
+            left: -50px;
+        }
+
+        @media (max-width: 1000px ) {
+            .slider{
+                display: none !important;
+            }
+            
+        }
+        @media (max-width: 700px ) {
+            .slider-medium{
+                display: none !important;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bg-[#0B2C3D] text-white">
+        <div class=" max-w-[1200px] mx-auto flex flex-wrap gap-3 md:gap-0 justify-between py-3 px-5">
+            <div class="flex flex-wrap md:gap-10 gap-[5%]">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="whitespace-nowrap">245 Lillion Bive, Hookbreak</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-regular fa-envelope"></i>
+                    <p class="whitespace-nowrap">info@senitize-site.com</p>
+                </div>
+            </div>
+            <div class="flex gap-3 items-center">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-whatsapp"></i>
+                <i class="fa-brands fa-vimeo-v"></i>
+                <hr>
+                <img class="w-5 h-5 rounded-full"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABkCAMAAAD0WI85AAAAgVBMVEX////IEC4BIWkAIWnNQkv67vDHAyoAAFnFABbLytTKzdgAAF4AHmjGAB/EAADuysrGACPz8/b4+fuUl7H24eLj5evZen8qMXDXcnby09YABmH02twfKW3FABGKj6zr7PDUX2rVZm0AAFMAFmXZ2uLSWWLWa3QAEWPcg4rQT1ftwsXEQHPvAAAF4UlEQVR4nO1cW3uiMBBNYatsAaWiVqnirdpu//8PXORikmEGknBZth/z4AO0SU7OnGSSTGC3LUPsEO9cz7ZMzJ6+ZGU4TyVzsjcvU8OiPXcXH9Ii3r8CXqzvJCj84PSOQ/ESKLaVVIn8VD1QA1JZGvo0geHlMJbrwOcw/OudjKenYHZCWXm9QxkOI557iV8zNtYzDuPR+hRTcCWgvLnWMBix3LccxvIkssH9Kce136BQVuFUl5UuGPHcabjKncoX2TjOH01FHwq2CDVl3zqQu8TDReZUtxnXuO9InS+88G+o7FdhFEHZ9+dathdFccGG4FTB/ij70NceEQ6w11BD9u0yklQcZtrYyhIvTxvL20QUzxVl5S57z+6bkcSpHhJXaaWMlZD9IXTVWGmPEc91w2LecCSJoy3M/jAgxgKRlUT2fTKSSDyfN257SeIoGyzGxwNC9tOolpV2GPEiPuAqdPIiZskIjdNHD8bdA/FcC5U46fZTl1mCoE6SoI6E7HdpDNada6WhYd6ijepAZLEU/yVEoxgiMg6jKlaaMsIl/r5WmhouaWtYPul8opOOg48Pr+GbS8+QjRix3beiU0++GOFSk/Vnotr7P7O8G3kYsK0IA4QCzhQrTRjx3LOWxIXwiaGFUIEZLKRdIEJnboTOpANasTOZSHBtqCzZIba47Bu7VuITVrFskiTuVywxhJoZ6JPqxUupsEuZFTNGPPezWc2s1C98OanYL3ZzRmwDXwAjBYNdYxOe6it5qhEjJuosUVoCYjUaO/SBtDVeAtcqj+Y3aTSnqL4ISy8d10pmsAu2MxI4hCuTMxjGSMZK9IjBNOZXTUZajClwRoqIBxsOKyMeLUY0o7x007Ac7dcwkvXXTicGzXdcVBlR2RkRrC7urgKivypIZa8EhN4ZMVwJka5V/AgVKqzTVqEbqQCJXLSD9nQHkQ1UcK3CwYiVMyV7FSCqOyN3U9stqGVEfy/jsKoDsjqolybs3zRkxEonLeXdJW40kAzGRonfPDCtZ2SqaOdz/JE1YB3MBPvz/WwAZLG9ioUQivuIz2fV9rHf6pb7PtvORTMDIhUxJ3h90Wgc0Yg2rMa1/h8bgQzNRiBm9tyZ+WUgfne1sV+d2aQMZNJdbWzSmZVxJEg6M4ZV9z/aCGRoNgIZmo1AhmYjkKHZCGRoNgIZmo1AhmY/B0h3Sx2suu5q+zlL3e62A3refOjOxn2todkIZGjWMxCDgx5g8rnPfGEA5PkbPffROujRPnoD9r7xxUO069YEyOL7j1hIsF6mj7WO3jQPQyEbJ/m0fym803Ot7UY8xp+tM1Y0DkO1jqchG1cxS2xyy2AoH08rldbe8TRPGFDsQ42EAViizG/uYC0lDDxSOIDNjyKMwqu1UzggKxsxv2afJ/s2T+HgSTWlCh0kb8AoqabUQTO0g+qTaqqcaoe7gFyZwyszS3MCJrlsULhsfZpTfeIZZOMoppBMToIoTRPPYA2y7POx0CzxjKcCwv6S0qtm68yLG6cCwlok2e8fstdNBeTJmbCCo4N4cKPkzE+C91uAZIXqJWfydFlYeIXEH/9tni4LjJI9lS4LTLVgnyq4SQIzsK3ccRu043DXElLKIRsg15tLvNWUcgjlKKYdTx6uXJdSzpP8YYEnVOJdJPkb1oxfu6jul43QL11cuwBG+wLOSIWn7ilPRUTXykUYYCrqLF9NqiykbuxoBKTReAkvi8ECNEdzc9cym8Hky2LK82sGo7fre7A1lTEF0414er1QCVtUEeXxK64QP7ps6v2KK2wVsfSausWlY2Cmq4KWgGishPKlV4z9LbFO+2fXwJU6WYO+f3gxH7YQdXvIxnVSvZfRGyO29v6NiBUMccXOyAA+XlHpN/u1/JLYGRnI50QgK5KSpRcKy6a+GbFUwyf0oRiYDeyTO9DBHrIv2KBD5apdsR5cK/8hlxiF7DNcxOJloJ+lgqykrWdw2cR3Rgb8oTDIShKjJwOuIPGn4Gubwxj4p9sgK7e/oYgJrTMHV9EAAAAASUVORK5CYII="
+                    alt="">
+                <p>EN</p>
+                <div class="border w-2 h-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <Nav
+        class="max-w-[1200px] py-5 px-5 rounded-md mx-auto border bg-white flex items-center justify-between gap-3 absolute lg:w-[1200px] left-[50%] -translate-x-[50%] top-[180px] z-10">
+        <div class="flex items-center gap-3">
+            <img class="w-14" src="/images/logo (2).png" alt="">
+            <p class="text-4xl font-semibold">Spero</p>
+        </div>
+        <div class="flex gap-5 text-[18px] font-semibold items-center">
+            <a href="#" class="border-0 border-b-4 border-yellow-500">Home</a>
+            <a href="#">Pages</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blogs</a>
+            <a href="#">Shop</a>
+            <a href="#">Contact</a>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <button class="px-5 py-3 bg-[#FF5F15] font-bold text-white">Contact Us</button>
+        </div>
+    </Nav> -->
+
+    <div class="navbar bg-base-100 max-w-[1200px] absolute lg:w-[1200px] left-[50%] -translate-x-[50%] md:top-[80px] z-10 md:p-5 rounded-md">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a class="border-0 border-b-4 border-yellow-500 rounded-none">Home</a></li>
+                <li><a>Pages</a></li>
+                <li><a>Portfolio</a></li>
+                <li><a>Blogs</a></li>
+                <li><a>Shope</a></li>
+                
+                <li><a>Contact</a></li>
+                <li><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                </ul>
+            </div>
+            <div class="flex items-center gap-3">
+                <img class="md:w-14" src="/images/logo (2).png" alt="">
+                <p class="md:text-4xl text-2xl font-semibold">Spero</p>
+            </div>
+        </div>
+        <div class="navbar-center hidden lg:flex ml-auto">
+            <ul class="menu menu-horizontal px-1">
+                <li><a class="text-[19px] font-semibold border-0 border-b-4 border-yellow-500 rounded-none">Home</a></li>
+                <li><a class="text-[19px] font-semibold">Pages</a></li>
+                <li><a class="text-[19px] font-semibold">Portfolio</a></li>
+                <li><a class="text-[19px] font-semibold">Blogs</a></li>
+                <li><a class="text-[19px] font-semibold">Shope</a></li>
+                
+                <li><a class="text-[19px] font-semibold">Contact</a></li>
+                <li><a class="text-[19px] font-semibold"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+
+            </ul>
+            <button class="px-5 py-3 bg-[#FF5F15] font-bold text-white text-[18px]">Contact Us</button>
+        </div>
+        <div class="navbar-end w-[150px] md:hidden ml-auto">
+            <button class="px-3 py-2 bg-[#FF5F15] font-bold text-white">Contact Us</button>
+
+        </div>
+    </div>
+
+
+    <!-- Banner section starts here -->
+    <section>
+        <div class="carousel w-full">
+            <div id="slide1" class="carousel-item relative w-full">
+                <div
+                    class="bg-[url('https://images.unsplash.com/photo-1530639834082-05bafb67fbbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] h-screen w-full bg-no-repeat bg-cover pt-10">
+
+                    <div class="flex flex-col justify-center max-w-[1200px] h-full mx-auto md:px-0 px-5">
+                        <div class="flex items-center gap-3">
+                            <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                            <p class="text-[#ff5f15] md:text-xl">Greate Experiance In Building</p>
+                        </div>
+                        <h3 class="md:text-7xl font-bold text-4xl md:leading-[100px] md:py-0 py-5">Highest Standards <br> Of Construction</h3>
+                        <p class="text-md md:w-[500px] py-5">All type of work-from designing and laying the Foundation
+                            finishign commisioning. Tight Dedlines, Resonable.</p>
+                        <div class="flex gap-7">
+                            <button class="md:text-[18px] px-7 py-3 bg-[#FF5F15] font-bold text-white">Get a quote</button>
+                            <button class="md:text-[18px] px-7 py-3 bg-[#0B2C3D] font-bold text-white">Learn More</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide1" class="btn btn-circle">❮</a>
+                    <a href="#slide2" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide2" class="carousel-item relative w-full">
+                <div
+                    class="bg-[url('https://images.unsplash.com/photo-1530639834082-05bafb67fbbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] h-screen w-full bg-no-repeat bg-cover pt-10">
+
+                    <div class="flex flex-col justify-center max-w-[1200px] h-full mx-auto md:px-0 px-5">
+                        <div class="flex items-center gap-3">
+                            <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                            <p class="text-[#ff5f15] md:text-xl">Greate Experiance In Building</p>
+                        </div>
+                        <h3 class="md:text-7xl font-bold text-4xl md:leading-[100px] md:py-0 py-5">Highest Standards <br> Of Construction</h3>
+                        <p class="text-md md:w-[500px] py-5">All type of work-from designing and laying the Foundation
+                            finishign commisioning. Tight Dedlines, Resonable.</p>
+                        <div class="flex gap-7">
+                            <button class="md:text-[18px] px-7 py-3 bg-[#FF5F15] font-bold text-white">Get a quote</button>
+                            <button class="md:text-[18px] px-7 py-3 bg-[#0B2C3D] font-bold text-white">Learn More</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide1" class="btn btn-circle">❮</a>
+                    <a href="#slide2" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <!-- <div id="slide2" class="carousel-item relative w-full">
+                <div
+                    class="bg-[url('https://plus.unsplash.com/premium_photo-1661476116614-0b35face5f2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] h-screen w-full bg-no-repeat bg-cover pt-10">
+
+
+                    <div class="flex flex-col justify-center max-w-[1200px] h-full mx-auto">
+                        <div class="flex items-center gap-3">
+                            <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                            <p class="text-[#ff5f15] text-xl">Greate Experiance In Building</p>
+                        </div>
+                        <h3 class="text-7xl font-bold leading-[100px]">Highest Standards <br> Of Construction</h3>
+                        <p class="text-md w-[500px] py-5">All type of work-from designing and laying the Foundation
+                            finishign
+                            commisioning. Tight Dedlines,
+                            Resonable.</p>
+                        <div class="flex gap-7">
+                            <button class="text-[18px] px-7 py-3 bg-[#FF5F15] font-bold text-white">Get a quote</button>
+                            <button class="text-[18px] px-7 py-3 bg-[#0B2C3D] font-bold text-white">Learn More</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide1" class="btn btn-circle">❮</a>
+                    <a href="#slide3" class="btn btn-circle">❯</a>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <!-- Banner section ends Here -->
+
+    <!-- Solutions section starts here -->
+    <section class="md:h-screen max-w-[1200px] mx-auto md:py-24 flex flex-wrap">
+        <div class="relative md:h-[550px] md:w-[450px] w-full p-5">
+            <div
+                class="bg-[url('https://www.ccs-technologies.com/estim8/imgs/img5.jpg')] md:h-[550px] h-[450px] md:w-[450px] w-full bg-no-repeat bg-cover relative z-20">
+            </div>
+            <div
+                class="w-[230px] h-[200px] md:flex flex-wrap gap-2 absolute -bottom-[45px] -right-[60px] -z-0 overflow-hidden hidden">
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+                <div class="h-2 w-2 rounded-full bg-[#ff5f15bf]"></div>
+            </div>
+            <div class="border-[20px] h-[300px] w-[400px] absolute top-[50%] -translate-y-[50%] -left-16"></div>
+        </div>
+        <div class="flex flex-col justify-center md:ml-32 md:w-[600px] w-full px-5 md:p-0">
+            <div class="flex items-center gap-3">
+                <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Greate Experiance In Building</p>
+            </div>
+            <h3 class="md:text-5xl text-2xl font-bold md:leading-[60px] py-5">
+                Solutions For Residentials & Industries!
+            </h3>
+            <p class="pl-5 border-0 border-l-4 border-orange-400 my-5">Lorem, ipsum dolor sit amet consectetur
+                adipisicing elit. Iste ratione consectetur quibusdam accusantium. Vitae dolore quaerat obcaecati id
+                molestiae, nis</p>
+            <p class="py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus dolor illum nisi odio
+                itaque amet dolorum reprehenderit voluptas maiores vitae eos laboriosam, perferendis sunt in officiis
+                doloremque quia. Doloribus, suscipit? Ipsa molestiae tempore voluptas adipisci quas. Sequi provident
+                impedit fuga laborum fugiat. Blanditiis incidunt porro minima vitae accusamus. Earum, obcaecati.</p>
+            <div class="my-5 flex md:gap-5">
+                <button class="md:text-[18px] md:px-7 px-4 py-3 bg-[#0B2C3D] font-bold text-white">Learn More</button>
+                <img src="images/sign.png" alt="">
+            </div>
+        </div>
+    </section>
+    <!-- Solutions section ends here -->
+
+    <!-- Construction Services Section Starts Here -->
+    <section class=" bg-[#F9F9FB] md:py-32 md:p-0 p-5">
+        <div class="max-w-[1200px] mx-auto md:grid grid-cols-2">
+            <!-- First column -->
+            <div class="flex flex-col justify-center md:w-[600px] md:pr-20">
+                <div class="flex items-center gap-3">
+                    <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                    <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Construction Services</p>
+                </div>
+                <h3 class="md:text-5xl text-2xl font-bold md:leading-[60px] py-5">
+                    Provide Construction Services For You
+                </h3>
+                <p class="pl-5 border-0 border-l-4 border-orange-400 my-5">Lorem, ipsum dolor sit amet consectetur
+                    adipisicing elit. Iste ratione consectetur quibusdam accusantium. Vitae dolore quaerat obcaecati id
+                    molestiae, nis</p>
+                <p class="py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus dolor illum nisi odio
+                    itaque amet dolorum reprehenderit voluptas maiores vitae eos laboriosam, perferendis sunt in
+                    officiis doloremque quia. Doloribus, suscipit? Ipsa molestiae
+                </p>
+                <div class="my-5 flex gap-5">
+                    <button class="md:text-[18px] px-7 py-3 bg-[#FF5F15] font-bold text-white">Learn More</button>
+                </div>
+            </div>
+            <!-- second column -->
+            <div class="relative">
+                <div class="lg:grid grid-cols-2 gap-5">
+                    <div class=" h-[300px] border bg-[#FF5F15] pl-10 py-10 pr-6 text-white shadow-xl z-10">
+                        <img class="w-16" src="images/piston.png" alt="">
+                        <p class="text-xl font-bold pt-7 pb-3">Mechanical Works</p>
+                        <p>Construction is a general term that art and science to form</p>
+                        <p class="pt-4 font-bold text-md">Service details <i class="fa-solid fa-arrow-right ml-3"></i>
+                        </p>
+                    </div>
+                    <div class=" h-[300px] border pl-10 py-10 pr-6 shadow-xl z-10 bg-white">
+                        <img class="w-16" src="images/cable.png" alt="">
+                        <p class="text-xl font-bold pt-7 pb-3">Mechanical Works</p>
+                        <p>Construction is a general term that art and science to form</p>
+                        <p class="pt-4 font-bold text-md">Service details <i class="fa-solid fa-arrow-right ml-3"></i>
+                        </p>
+                    </div>
+                    <div class=" h-[300px] border pl-10 py-10 pr-6 shadow-xl z-10 bg-white">
+                        <img class="w-16" src="images/design.png" alt="">
+                        <p class="text-xl font-bold pt-7 pb-3">Mechanical Works</p>
+                        <p>Construction is a general term that art and science to form</p>
+                        <p class="pt-4 font-bold text-md">Service details <i class="fa-solid fa-arrow-right ml-3"></i>
+                        </p>
+                    </div>
+                    <div class=" h-[300px] border pl-10 py-10 pr-6 shadow-xl z-10 bg-white">
+                        <img class="w-16" src="images/drop.png" alt="">
+                        <p class="text-xl font-bold pt-7 pb-3">Mechanical Works</p>
+                        <p>Construction is a general term that art and science to form</p>
+                        <p class="pt-4 font-bold text-md">Service details <i class="fa-solid fa-arrow-right ml-3"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="absolute top-0 w-[800px] h-[700px] md:visible hidden">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#F8E4DD"
+                            d="M35.2,-55.9C48.8,-53.1,65.1,-50.1,74.2,-40.7C83.3,-31.4,85.1,-15.7,82.5,-1.5C79.9,12.7,72.9,25.3,65.4,37.6C58,49.8,50.2,61.6,39.2,66C28.2,70.4,14.1,67.5,1.3,65.2C-11.5,62.9,-22.9,61.2,-35.6,57.8C-48.4,54.4,-62.3,49.2,-69.9,39.3C-77.4,29.4,-78.5,14.7,-79.4,-0.5C-80.3,-15.7,-80.9,-31.4,-75.7,-45.3C-70.4,-59.1,-59.2,-71.1,-45.6,-73.9C-32,-76.7,-16,-70.3,-2.6,-65.7C10.8,-61.2,21.6,-58.7,35.2,-55.9Z"
+                            transform="translate(100 100)" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Construction Services Section Ends Here -->
+    <!-- Construction Recent Projects section starts Here -->
+    <section class="md:py-28 py-10 overflow-hidden">
+        <div class=" mx-auto">
+            <div class="flex items-center gap-3 justify-center">
+                <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Construction Services</p>
+            </div>
+            <h3 class="md:text-5xl text-2xl font-bold md:leading-[60px] py-5 text-center">Our recent projects</h3>
+
+            <!-- Slider Medium -->
+            <div class="slider-medium max-w-[1200px] mx-auto visible">
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Small -->
+            <div class="slider-small max-w-[1200px] mx-auto md:hidden visible">
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+                <div class="p-5 relative h-[520px]  max-w-[400px]">
+                    <img class="mx-3 w-full h-[400px]" src="http://www.meshox.com/uploads/image/20190905/1567759155.png"
+                        alt="">
+
+                    <div
+                        class="bg-white p-5 py-7 w-10/12 h-fit absolute bottom-10 ml-3 left-1/2 -translate-x-1/2 shadow-xl">
+                        <p class="text-gray-400 font-bold">Construction</p>
+                        <h3 class="text-xl font-bold pb-2">Contemporary Vilas</h3>
+                        <div class="flex gap-4 text-orange-500 items-center font-bold">View Projects <i
+                                class="fa-solid fa-arrow-right"></i> </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Construction Recent Projects section ends Here -->
+    <!-- Specialization section starts here -->
+    <section class="bg-[#0B2C3D] grid md:grid-cols-2 grid-cols-1 md:h-[700px] relative">
+
+        <div class="flex flex-col justify-center md:w-[700px] md:pr-24 text-white md:ml-auto mx-auto p-5">
+            <div class="flex items-center gap-3">
+                <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Great Experiance In building</p>
+            </div>
+            <h3 class="md:text-5xl text-2xl font-bold md:leading-[60px] py-5">
+                Our Specification & Company Features
+            </h3>
+
+            <div class="md:grid grid-cols-2 gap-5 mt-5 md:visible ">
+                <div class="flex gap-4 group mt-5">
+                    <div
+                        class="bg-[#2D4A58] group-hover:bg-white h-fit px-3 py-2 rounded-full group-hover:text-[#ff5f15]">
+                        <i class="fa-solid fa-check "></i>
+                    </div>
+                    <p class="font-semibold text-[19px] group-hover:relative group-hover:bottom-2">Living rooms are
+                        pre-wired for surroundings</p>
+                </div>
+                <div class="flex gap-4 group mt-5">
+                    <div
+                        class="bg-[#2D4A58] group-hover:bg-white h-fit px-3 py-2 rounded-full group-hover:text-[#ff5f15]">
+                        <i class="fa-solid fa-check "></i>
+                    </div>
+                    <p class="font-semibold text-[19px] group-hover:relative group-hover:bottom-2">Living rooms are
+                        pre-wired for surroundings</p>
+                </div>
+                <div class="flex gap-4 group mt-5">
+                    <div
+                        class="bg-[#2D4A58] group-hover:bg-white h-fit px-3 py-2 rounded-full group-hover:text-[#ff5f15]">
+                        <i class="fa-solid fa-check "></i>
+                    </div>
+                    <p class="font-semibold text-[19px] group-hover:relative group-hover:bottom-2">Living rooms are
+                        pre-wired for surroundings</p>
+                </div>
+                <div class="flex gap-4 group mt-5">
+                    <div
+                        class="bg-[#2D4A58] group-hover:bg-white h-fit px-3 py-2 rounded-full group-hover:text-[#ff5f15]">
+                        <i class="fa-solid fa-check "></i>
+                    </div>
+                    <p class="font-semibold text-[19px] group-hover:relative group-hover:bottom-2">Living rooms are
+                        pre-wired for surroundings</p>
+                </div>
+                <div class="flex gap-4 group mt-5">
+                    <div
+                        class="bg-[#2D4A58] group-hover:bg-white h-fit px-3 py-2 rounded-full group-hover:text-[#ff5f15]">
+                        <i class="fa-solid fa-check "></i>
+                    </div>
+                    <p class="font-semibold text-[19px] group-hover:relative group-hover:bottom-2">Living rooms are
+                        pre-wired for surroundings</p>
+                </div>
+                <div class="flex gap-4 group mt-5">
+                    <div
+                        class="bg-[#2D4A58] group-hover:bg-white h-fit px-3 py-2 rounded-full group-hover:text-[#ff5f15]">
+                        <i class="fa-solid fa-check "></i>
+                    </div>
+                    <p class="font-semibold text-[19px] group-hover:relative group-hover:bottom-2">Living rooms are
+                        pre-wired for surroundings</p>
+                </div>
+            </div>
+
+            <!-- play button -->
+            <div
+                class="w-32 h-32 rounded-full bg-[#ffffffd5] text-[#FF5F15] md:flex justify-center items-center text-4xl absolute left-1/2 translate-x-[-50%] hidden">
+                <i class="fa-sharp fa-solid fa-circle-play text-8xl "></i>
+            </div>
+
+        </div>
+        <div class="bg-[url('images/pointing-sketch.jpg')] bg-center bg-cover md:h-full h-[500px] w-full"></div>
+    </section>
+    <!-- Specialization section ends here -->
+    <!-- Experianced worker section start here -->
+    <section class="md:py-32 py-10">
+        <div class="flex items-center gap-3 justify-center">
+            <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+            <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Our Expert Worker</p>
+        </div>
+        <h3 class="md:text-5xl text-2xl font-bold leading-[60px] md:py-3 md:mb-5 text-center">
+            Our Expert Workers
+        </h3>
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 md:gap-5 max-w-[1250px] mx-auto">
+            <div class="p-5 relative group">
+                <div class="h-[400px] relative transition-all">
+                    <img class="mx-3 w-full h-[400px] relative" src="https://globewings.in/assets/images/globe/1.jpg"
+                        alt="Person Image1">
+                    <div
+                        class="bg-[#00000060] group absolute group-hover:h-[400px] h-0 transition-all ease-in-out top-0 w-full ml-3 flex justify-center items-center">
+                        <div>
+                            <div class="group-hover:flex gap-3 items-center hidden">
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-facebook-f "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-twitter "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-whatsapp "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-vimeo-v "></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mr-5 bg-white group-hover:bg-[#FF5F15] group-hover:text-white p-8 w-10/12 h-fit mx-auto relative -top-16 shadow-xl text-center">
+                    <h3 class="text-2xl font-bold pb-2">Saidul Islam Khukon</h3>
+                    <div class="group-hover:text-gray-200 text-gray-500 font-semibold uppercase text-center">Technology
+                        Officer </div>
+                </div>
+            </div>
+
+            <!-- Second div -->
+
+            <div class="p-5 relative group">
+                <div class="h-[400px] relative transition-all">
+                    <img class="mx-3 w-full h-[400px] relative" src="https://globewings.in/assets/images/globe/1.jpg"
+                        alt="Person Image1">
+                    <div
+                        class="bg-[#00000060] group absolute group-hover:h-[400px] h-0 transition-all ease-in-out top-0 w-full ml-3 flex justify-center items-center">
+                        <div>
+                            <div class="group-hover:flex gap-3 items-center hidden">
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-facebook-f "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-twitter "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-whatsapp "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-vimeo-v "></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mr-5 bg-white group-hover:bg-[#FF5F15] group-hover:text-white p-8 w-10/12 h-fit mx-auto relative -top-16 shadow-xl text-center">
+                    <h3 class="text-2xl font-bold pb-2">Saidul Islam Khukon</h3>
+                    <div class="group-hover:text-gray-200 text-gray-500 font-semibold uppercase text-center">Technology
+                        Officer </div>
+                </div>
+            </div>
+
+
+            <div class="p-5 relative group">
+                <div class="h-[400px] relative transition-all">
+                    <img class="mx-3 w-full h-[400px] relative" src="https://globewings.in/assets/images/globe/1.jpg"
+                        alt="Person Image1">
+                    <div
+                        class="bg-[#00000060] group absolute group-hover:h-[400px] h-0 transition-all ease-in-out top-0 w-full ml-3 flex justify-center items-center">
+                        <div>
+                            <div class="group-hover:flex gap-3 items-center hidden">
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-facebook-f "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-twitter "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-whatsapp "></i>
+                                </div>
+                                <div
+                                    class="w-14 h-14 text-xl rounded-full bg-white flex justify-center items-center hover:bg-[#FF5F15] hover:text-white transition-all">
+                                    <i class="fa-brands fa-vimeo-v "></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mr-5 bg-white group-hover:bg-[#FF5F15] group-hover:text-white p-8 w-10/12 h-fit mx-auto relative -top-16 shadow-xl text-center">
+                    <h3 class="text-2xl font-bold pb-2">Saidul Islam Khukon</h3>
+                    <div class="group-hover:text-gray-200 text-gray-500 font-semibold uppercase text-center">Technology
+                        Officer </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+    <!-- Experianced worker section ends here -->
+    <!-- Working Process Section Starts Here -->
+    <Section class="md:mb-44 h-fit relative">
+
+        <div class="max-w-[1250px] mx-auto bg-white md:p-20 p-5 md:pt-32 z-30 right-0 relative md:top-44">
+            <div class="flex items-center gap-3 justify-center z-30">
+                <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+                <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Our Expert Worker</p>
+            </div>
+            <h3 class="md:text-5xl text-2xl font-bold md:leading-[60px] md:py-3 mb-5 text-center">
+                Our Expert Workers
+            </h3>
+
+            <div class="md:grid grid-cols-3 gap-10 pt-10 z-40">
+                <div class="rounded-sm group px-10 text-center hover:border-[#FF5F15] border-2 z-50">
+                    <p
+                        class="text-9xl font-bold my-6 py-2 border-0 border-b-[10px] border-white group-hover:border-gray-300 group-hover:border-b-[10px] transition-all w-fit mx-auto text-center text-gray-300">
+                        01</p>
+                    <p class="text-2xl font-bold text-center">Finding Out Needs</p>
+                    <p class="py-4 pb-14">Construction is a general term meaning the art and science to for</p>
+                </div>
+
+                <div class="rounded-sm group px-10 text-center hover:border-[#FF5F15] border-2">
+                    <p
+                        class="text-9xl font-bold my-6 py-2 border-0 border-b-[10px] border-white group-hover:border-gray-300 group-hover:border-b-[10px] transition-all w-fit mx-auto text-center text-gray-300">
+                        02</p>
+                    <p class="text-2xl font-bold text-center">Developing Projects</p>
+                    <p class="py-4 pb-14">Construction is a general term meaning the art and science to for</p>
+                </div>
+
+                <div class="rounded-sm group px-10 text-center hover:border-[#FF5F15] border-2">
+                    <p
+                        class="text-9xl font-bold my-6 py-2 border-0 border-b-[10px] border-white group-hover:border-gray-300 group-hover:border-b-[10px] transition-all w-fit mx-auto text-center text-gray-300">
+                        03</p>
+                    <p class="text-2xl font-bold text-center">Production Launch</p>
+                    <p class="py-4 pb-14">Construction is a general term meaning the art and science to for</p>
+                </div>
+            </div>
+
+            <div class="container md:grid grid-cols-4">
+
+                <!-- Circle-1 -->
+                <div class="flex flex-col justify-center items-center md:py-20 py-8">
+                    <div x-data="scrollProgress"
+                        class=" inline-flex items-center justify-center overflow-hidden rounded-full">
+                        <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
+                        <svg class="w-48 h-48">
+                            <circle class="text-gray-300" stroke-width="12" stroke="currentColor" fill="transparent"
+                                r="85" cx="95" cy="95" />
+                            <circle class="text-[#FF5F15]" stroke-width="12" :stroke-dasharray="circumference"
+                                :stroke-dashoffset="circumference - 87 / 100 * circumference" stroke-linecap="round"
+                                stroke="currentColor" fill="transparent" r="85" cx="95" cy="95" />
+                        </svg>
+                        <span class="absolute text-5xl font-extrabold text-black" x-text="`${87}%`"></span>
+                        <!-- <span class="absolute text-5xl font-extrabold text-blue-700" x-text="`${percent}%`"></span> -->
+                    </div>
+                    <h3 class="uppercase text-2xl font-extrabold mt-5 text-center">Project Done</h3>
+                    <p class="text-gray mt-2">Construction Simulation</p>
+                </div>
+
+                <!-- Circle-2 -->
+                <div class="flex flex-col justify-center items-center md:py-20 py-8">
+                    <div x-data="scrollProgress2"
+                        class=" inline-flex items-center justify-center overflow-hidden rounded-full">
+                        <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
+                        <svg class="w-48 h-48">
+                            <circle class="text-gray-300" stroke-width="12" stroke="currentColor" fill="transparent"
+                                r="85" cx="95" cy="95" />
+                            <circle class="text-[#FF5F15]" stroke-width="12" :stroke-dasharray="circumference"
+                                :stroke-dashoffset="circumference -62 / 100 * circumference" stroke-linecap="round"
+                                stroke="currentColor" fill="transparent" r="85" cx="95" cy="95" />
+                        </svg>
+                        <span class="absolute text-5xl font-extrabold text-black" x-text="`${62}%`"></span>
+                        <!-- <span class="absolute text-5xl font-extrabold text-blue-700" x-text="`${percent}%`"></span> -->
+                    </div>
+                    <h3 class="uppercase text-2xl font-extrabold mt-5 text-center">Project Done</h3>
+                    <p class="text-gray mt-2">Construction Simulation</p>
+                </div>
+
+                <!-- Circle-3 -->
+                <div class="flex flex-col justify-center items-center md:py-20 py-8">
+                    <div x-data="scrollProgress3"
+                        class=" inline-flex items-center justify-center overflow-hidden rounded-full">
+                        <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
+                        <svg class="w-48 h-48">
+                            <circle class="text-gray-300" stroke-width="12" stroke="currentColor" fill="transparent"
+                                r="85" cx="95" cy="95" />
+                            <circle class="text-[#FF5F15]" stroke-width="12" :stroke-dasharray="circumference"
+                                :stroke-dashoffset="circumference - 50 / 100 * circumference" stroke-linecap="round"
+                                stroke="currentColor" fill="transparent" r="85" cx="95" cy="95" />
+                        </svg>
+                        <span class="absolute text-5xl font-extrabold text-black" x-text="`${50}%`"></span>
+                        <!-- <span class="absolute text-5xl font-extrabold text-blue-700" x-text="`${percent}%`"></span> -->
+                    </div>
+                    <h3 class="uppercase text-2xl font-extrabold mt-5 text-center">Project Done</h3>
+                    <p class="text-gray mt-2">Construction Simulation</p>
+                </div>
+
+                <!-- Circle-14 -->
+                <div class="flex flex-col justify-center items-center md:py-20 py-8">
+                    <div x-data="scrollProgress4"
+                        class=" inline-flex items-center justify-center overflow-hidden rounded-full">
+                        <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
+                        <svg class="w-48 h-48">
+                            <circle class="text-gray-300" stroke-width="12" stroke="currentColor" fill="transparent"
+                                r="85" cx="95" cy="95" />
+                            <circle class="text-[#FF5F15]" stroke-width="12" :stroke-dasharray="circumference"
+                                :stroke-dashoffset="circumference - percent / 100 * circumference"
+                                stroke-linecap="round" stroke="currentColor" fill="transparent" r="85" cx="95"
+                                cy="95" />
+                        </svg>
+                        <span class="absolute text-5xl font-extrabold text-black" x-text="`${percent}%`"></span>
+                        <!-- <span class="absolute text-5xl font-extrabold text-blue-700" x-text="`${percent}%`"></span> -->
+                    </div>
+                    <h3 class="uppercase text-2xl font-extrabold mt-5 text-center">Project Done</h3>
+                    <p class="text-gray mt-2">Construction Simulation</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full h-[500px] bg-[url('https://cdn.pixabay.com/photo/2016/06/10/14/34/architecture-1448221_1280.jpg')] bg-no-repeat bg-cover bg-center absolute top-0 -z-0 "
+            alt=""></div>
+
+    </Section>
+    <!-- Working Process Section Ends Here -->
+    <!-- Client Feedback Section Starts Here -->
+
+    <section class="w-full relative">
+
+        <div class="flex items-center gap-3 justify-center z-30">
+            <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+            <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Client's Feedback</p>
+        </div>
+        <h3 class="md:text-5xl text-2xl font-bold leading-[60px] py-3 mb-5 text-center">
+            Client's Feedback
+        </h3>
+
+        <img src="images/sight-design.png" class="absolute top-0 md:visible hidden" alt="">
+        <img src="images/quotation.png" class="absolute top-10 md:visible hidden opacity-40 h-[300px] w-[350px] right-[12%]" alt="">
+
+        <div class="slider max-w-[1200px] mx-auto">
+
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-5 relative w-full m-2 border">
+
+            </div>
+            <div class="p-5 relative w-full m-2 border">
+
+            </div>
+
+        </div>
+
+        <!-- slider small -->
+        <div class="slider-small max-w-[1200px] mx-auto overflow-hidden md:hidden visible">
+
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-5 relative w-full m-2 border">
+
+            </div>
+            <div class="p-5 relative w-full m-2 border">
+
+            </div>
+
+        </div>
+
+        <!-- Medium Devide -->
+        <div class="slider-medium max-w-[1200px] mx-auto overflow-hidden lg:hidden ">
+
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-7 w-full m-2 border bg-white">
+                <img src="images/quote.png" class="w-9 rotate-180" alt="">
+                <span class="float-right span text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Soluta porro tempora voluptatum beatae! A eveniet nobis fuga illo ipsa facilis iste expedita eaque?
+                    Consectetur doloribus delectus mollitia? Fugit, adipisci ratione!</span>
+                <div class="flex gap-5 h-24 w-full items-end mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                        class="rounded-full w-16 h-16" alt="">
+                    <div class="">
+                        <h5 class="text-xl font-bold ">Khalid Mahmud</h5>
+                        <p class="uppercase font-bold text-gray-400">Selling aggenting</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-5 relative w-full m-2 border">
+
+            </div>
+            <div class="p-5 relative w-full m-2 border">
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Client Feedback Section Ends Here -->
+    <!-- Free Construction section Starts here -->
+    <section class="md:my-32 my-10">
+        <div class="h-[350px] relative overflow-hidden bg-[#0B2C3D]">
+            <div class="bg-[#0B2C3D] w-[60%] h-[700px] -rotate-[40deg] -top-64 absolute">
+                <div class="rotate-[40deg] mt-60 md:pr-32 w-fit ml-auto">
+                    <h3 class="md:text-5xl text-2xl font-bold text-white md:pt-64 pt-28">Wanted to Free Consultation?</h3>
+                    <p class="text-white pt-10 text-xl">We are always ready to help you</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-[url('https://gosindoabadi.com/wp-content/uploads/2022/02/services.jpg')] bg-no-repeat bg-center bg-cover w-8/12 ml-auto h-[350px]">
+            </div>
+            <div class="bg-[#ff5f15d4] w-[40%] h-[500px] -rotate-[40deg] top-20 -right-[380px] absolute"></div>
+        </div>
+    </section>
+    <!-- Free Construction section Ends here -->
+    <section class="md:mb-32 mb-10">
+        <div class="flex items-center gap-3 justify-center">
+            <div class="h-5 w-5 bg-[#FF5F15] text-[#FF5F15]"></div>
+            <p class="text-[#ff5f15] md:text-xl uppercase font-bold">Our Expert Worker</p>
+        </div>
+        <h3 class="md:text-5xl text-2xl font-bold leading-[60px] py-3 mb-5 text-center">
+            Our Expert Workers
+        </h3>
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 sm:p-5 max-w-[1250px] mx-auto">
+
+            <div>
+                <div class="h-[250px] relative text-white">
+                    <div
+                        class="bg-[url('https://img.freepik.com/free-photo/colleagues-with-safety-equipment-working-with-blueprints_23-2148908425.jpg?w=1060&t=st=1689112274~exp=1689112874~hmac=61f2aecf272037fd544726149141cc535c116db558447e371010468b242a8028')] bg-cover rounded-sm w-full h-full">
+                    </div>
+                    <div class="bg-[#00000060] absolute flex flex-col justify-end top-0 w-full h-full  p-10">
+                        <div class="flex items-center font-bold gap-5">
+                            <p>Product Design</p>
+                            <p class="bg-white text-black p-2 px-4 rounded-full">02 sep 2020</p>
+                        </div>
+                        <h3 class="text-xl pt-2">The Consumer-focused blogs gives clients</h3>
+                    </div>
+                </div>
+                <div class="h-[250px] relative text-white mt-8">
+                    <div
+                        class="bg-[url('https://img.freepik.com/free-photo/colleagues-with-safety-equipment-working-with-blueprints_23-2148908425.jpg?w=1060&t=st=1689112274~exp=1689112874~hmac=61f2aecf272037fd544726149141cc535c116db558447e371010468b242a8028')] bg-cover rounded-sm w-full h-full">
+                    </div>
+                    <div class="bg-[#00000060] absolute flex flex-col justify-end top-0 w-full h-full  p-10">
+                        <div class="flex items-center font-bold gap-5">
+                            <p>Product Design</p>
+                            <p class="bg-white text-black p-2 px-4 rounded-full">02 sep 2020</p>
+                        </div>
+                        <h3 class="text-xl pt-2">The Consumer-focused blogs gives clients</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-[530px] relative text-white">
+                <div
+                    class="bg-[url('https://img.freepik.com/free-photo/colleagues-with-safety-equipment-working-with-blueprints_23-2148908425.jpg?w=1060&t=st=1689112274~exp=1689112874~hmac=61f2aecf272037fd544726149141cc535c116db558447e371010468b242a8028')] bg-cover rounded-sm w-full h-full">
+                </div>
+                <div class="bg-[#00000060] absolute flex flex-col justify-end top-0 w-full h-full  p-10">
+                    <div class="flex items-center font-bold gap-5">
+                        <p>Product Design</p>
+                        <p class="bg-white text-black p-2 px-4 rounded-full">02 sep 2020</p>
+                    </div>
+                    <h3 class="text-xl pt-2">The Consumer-focused blogs gives clients</h3>
+                </div>
+            </div>
+
+            <div class="h-[530px] relative text-white">
+                <div
+                    class="bg-[url('https://img.freepik.com/free-photo/colleagues-with-safety-equipment-working-with-blueprints_23-2148908425.jpg?w=1060&t=st=1689112274~exp=1689112874~hmac=61f2aecf272037fd544726149141cc535c116db558447e371010468b242a8028')] bg-cover rounded-sm w-full h-full">
+                </div>
+                <div class="bg-[#00000060] absolute flex flex-col justify-end top-0 w-full h-full  p-10">
+                    <div class="flex items-center font-bold gap-5">
+                        <p>Product Design</p>
+                        <p class="bg-white text-black p-2 px-4 rounded-full">02 sep 2020</p>
+                    </div>
+                    <h3 class="text-xl pt-2">The Consumer-focused blogs gives clients</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="md:pt-48 pt-20 bg-[#181B2A] text-white relative p-5">
+        <img src="images/banner-plate.png"
+            class="absolute rounded-md -top-[65px] left-1/2 -translate-x-1/2 shadow-[10px_10px_#ffffff50] z-20" alt="">
+        <div class="footer max-w-[1250px] mx-auto">
+            <div>
+                <span class="footer-title text-xl">About us</span>
+                <p class="md:w-[300px] text-[16px] leading-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae repellendus similique tempore
+                    corrupti velit ab quibusdam quam repellat mollitia culpa dolorem architecto, aliquam unde ducimus
+                    enim, repudiandae deserunt atque porro.
+                </p>
+                <div class="flex gap-3 items-center text-black mt-5">
+                    <div
+                        class="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#FF5F15] bg-white transition-all hover:text-white rounded-full">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div
+                        class="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#FF5F15] bg-white transition-all hover:text-white rounded-full">
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                    <div
+                        class="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#FF5F15] bg-white transition-all hover:text-white rounded-full">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div
+                        class="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#FF5F15] bg-white transition-all hover:text-white rounded-full">
+                        <i class="fa-brands fa-vimeo-v"></i>
+                    </div>
+                </div>
+            </div>
+            <div class=" text-[16px]">
+                <span class="footer-title text-xl">Usefull Links</span>
+                <a class="link link-hover leading-8">About</a>
+                <a class="link link-hover leading-8">News</a>
+                <a class="link link-hover leading-8">PartNews</a>
+                <a class="link link-hover leading-8">Room </a>
+                <a class="link link-hover leading-8">Gallery</a>
+                <a class="link link-hover leading-8">Content</a>
+            </div>
+            <div class=" text-[16px]">
+                <span class="footer-title leading-8 text-xl">Help?</span>
+                <a class="link link-hover leading-8">FAQ</a>
+                <a class="link link-hover leading-8">Terms & Conditions</a>
+                <a class="link link-hover leading-8">Reporting</a>
+                <a class="link link-hover leading-8">Documentation</a>
+                <a class="link link-hover leading-8">Privacy policy</a>
+                <a class="link link-hover leading-8">Cookie policy</a>
+            </div>
+            <div class="text-[16px] md:w-[350px]">
+                <div class="flex items-center gap-3">
+                    <img class="w-14" src="/images/transparent-logo.png" alt="">
+                    <p class="text-4xl font-semibold">Spero</p>
+                </div>
+                <p class="py-5 leading-8">We are the team of designers and developers creating high quality Megnato,
+                    Perstashop.</p>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>245 Lillion Bive, Hookbreak</p>
+                </div>
+                <div class="w-full h-[50px] bg-white p-1 border flex mt-5 text-[16px]">
+                    <input type="text" name="" id="" class="ps-5 w-[70%]" placeholder="Enter email address">
+                    <button class="w-[30%] h-full bg-orange-500">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <div class=" bg-neutral">
+            <div class="footer items-center p-4 text-neutral-content w-[1250px] mx-auto mt-20 py-8">
+                <div class="items-center grid-flow-col">
+                    <!-- <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" class="fill-current"><path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path></svg>  -->
+                    <p class="text-[16px]">Copyright © 2023 - All right reserved</p>
+                </div>
+                <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+                    <p class="text-[16px]">Terms of Use</p>
+                    <hr class="border border-white h-full">
+                    <p class="text-[16px]">Private Policy</p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="https://kit.fontawesome.com/c756527c45.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+        integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.slider').slick({
+            infinite: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            
+        });
+        $('.slider-medium').slick({
+            infinite: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            
+        });
+        $('.slider-small').slick({
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            
+        });
+    </script>
+    <script>
+        const scrollProgress = () => {
+            return {
+                init() {
+                    window.addEventListener('scroll', () => {
+                        let winScroll = document.body.scrollTop || document.documentElement.scrollTop; console.log("winScroll", winScroll)
+                        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight - 400; console.log("height", height)
+                        // this.percent = 78
+                        this.percent = Math.round((winScroll / height) * 78)
+                    })
+                },
+                circumference: 80 * 2 * Math.PI,
+                percent: 0,
+            }
+        }
+
+        const scrollProgress2 = () => {
+            return {
+                init() {
+                    window.addEventListener('scroll', () => {
+                        let winScroll = document.body.scrollTop || document.documentElement.scrollTop
+                        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+                        this.percent = 62
+                        // this.percent = Math.round((winScroll / height) * 100)
+                    })
+                },
+                circumference: 80 * 2 * Math.PI,
+                percent: 0,
+            }
+        }
+
+        const scrollProgress3 = () => {
+            return {
+                init() {
+                    window.addEventListener('scroll', () => {
+                        let winScroll = document.body.scrollTop || document.documentElement.scrollTop
+                        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+                        this.percent = 50
+                        // this.percent = Math.round((winScroll / height) * 100)
+                    })
+                },
+                circumference: 80 * 2 * Math.PI,
+                percent: 0,
+            }
+        }
+
+        const scrollProgress4 = () => {
+            return {
+                init() {
+                    window.addEventListener('scroll', () => {
+                        let winScroll = document.body.scrollTop || document.documentElement.scrollTop
+                        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+                        this.percent = 90
+                        // this.percent = Math.round((winScroll / height) * 100)
+                    })
+                },
+                circumference: 80 * 2 * Math.PI,
+                percent: 0,
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Bootstrap</title>
+    <style>
+        * {
+            padding: 0 !important;
+            margin: 0% !important;
+            height: 100%;
+        }
+
+        .top-section {
+            height: auto;
+            background-color: #0B2C3D;
+        }
+
+        .flag {
+            width: 25px;
+            height: 25px;
+        }
+
+        .class-carousal {
+            width: 100%;
+            height: 100% !important;
+            /* border: 5px solid red; */
+        }
+
+        .main-nav {
+            height: 100px;
+            max-width: 1250px;
+            z-index: 10;
+        }
+
+        .btn-common {
+            border: none;
+            background-color: #FF5F15;
+        }
+
+        .nav-home {
+            border-bottom: 4px solid #FF5F15 !important;
+        }
+
+        .nav-home>a {
+            color: #FF5F15;
+        }
+
+        .content-width {
+            max-width: 1250px;
+        }
+
+        .box-orange {
+            background-color: #FF5F15;
+            width: 20px;
+            height: 20px;
+        }
+
+        .text-orange {
+            color: #FF5F15;
+        }
+        .heading-text{
+            font-size: 70px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <section class="top-section text-white fs-6">
+        <div
+            class="d-flex flex-wrap justify-content-md-between justify-content-center align-items-center container mx-auto py-3 px-md-5">
+            <div class="d-flex gap-5 justify-content-center align-items-center">
+                <div class="d-flex gap-2 pb-0">
+                    <i class="fa-solid fa-location-dot fs-5"></i>
+                    <p>245 Lillion Bive, Hookbreak</p>
+                </div>
+                <div class="d-flex gap-2 justify-content-center align-items-center">
+                    <i class="fa-regular fa-envelope fs-5"></i>
+                    <p>info@senitize-site.com</p>
+                </div>
+            </div>
+            <div class="d-flex gap-3 align-items-center mt-2 mt-md-0 ">
+                <i class="fa-brands fa-facebook-f fs-5"></i>
+                <i class="fa-brands fa-twitter fs-5"></i>
+                <i class="fa-brands fa-whatsapp fs-5"></i>
+                <i class="fa-brands fa-vimeo-v fs-5"></i>
+                <hr>
+                <img class="flag w-5 rounded-circle"
+                    src="data:image/png;base64,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"
+                    alt="">
+                <p class="">EN</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="position-relative">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="class-carousal carousel-inner w-100">
+                <div class="carousel-item active w-100">
+                    <img src="https://images.unsplash.com/photo-1530639834082-05bafb67fbbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="d-block w-100 img-fluid" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1530639834082-05bafb67fbbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="d-block w-100 img-fluid" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1530639834082-05bafb67fbbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div class="position-absolute top-0 w-100 h-100 p-5">
+            <nav class="main-nav navbar navbar-expand-lg bg-light container mx-auto rounded-1">
+                <div class="container-fluid p-4">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand d-flex align-items-center justify-content-center" href="#">
+                        <img src="images/logo (2).png" class="" alt="">
+                        <h3 class="h-auto ms-2 fs-1 fw-bolder">Spero</h3>
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 d-flex gap-4 me-4 justify-content-center pt-2">
+                            <li class="nav-home nav-item border border-0 border-bottom">
+                                <a class="nav-link fw-bold">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold" href="#">Pages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </li>
+                        </ul>
+                        <button class="h-100 btn-common px-4 text-white fw-bold"> Contact Us</button>
+                    </div>
+                </div>
+            </nav>
+            <section
+                class="content-width squire-box align-items-center container position-absolute start-50 translate-middle-x top-0">
+
+                <div class="h-100 d-flex flex-column w-100 justify-content-center">
+                    <div class="d-flex align-items-center gap-3 h-auto">
+                        <div class="box-orange"></div>
+                        <p class="text-orange fs-5 fw-bold">Greate Experiance In Building</p>
+                    </div>
+                    <h3 class="heading-text fw-bold py-3 h-auto">Highest Standards <br> Of Construction</h3>
+                    <p class="discription-text h-auto w-50 pe-5 pt-3 pb-4 fs-6 fw-bold">All type of work-from designing and laying the Foundation finishign commisioning. Tight Dedlines, Resonable.</p>
+
+                    <div class="d-flex h-auto gap-3 pt-2">
+                        <button class="h-100 btn-common fs-5 text-white fw-bold h-auto py-3 px-5"> Get A Quote</button>
+                        <button class="h-100 bg-black fs-5 text-white fw-bold h-auto py-3 px-5"> Learn More</button>
+                    </div>
+                    
+                </div>
+
+            </section>
+        </div>
+
+    </section>
+
+    <h1>Hello, world!</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c756527c45.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
